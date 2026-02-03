@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Password Strength Checker - University Case Study</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Password Strength Checker</h1>
+      <p class="subtitle">
+        Case study tool for understanding password creation habits among university students.
+      </p>
+    </header>
+
+    <section class="card" aria-labelledby="checker-title">
+      <h2 id="checker-title">Check a password</h2>
+      <label class="field">
+        <span>Password</span>
+        <div class="password-input">
+          <input
+            id="password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Enter a password to evaluate"
+            aria-describedby="strength-text"
+          />
+          <button id="toggle-visibility" type="button" aria-pressed="false">
+            Show
+          </button>
+        </div>
+      </label>
+
+      <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="meter-fill" id="meter-fill"></span>
+      </div>
+      <p id="strength-text" class="strength-text">Strength: —</p>
+
+      <div class="criteria" aria-live="polite">
+        <h3>Suggested criteria</h3>
+        <ul id="criteria-list">
+          <li data-criterion="length">At least 12 characters</li>
+          <li data-criterion="lowercase">Includes a lowercase letter</li>
+          <li data-criterion="uppercase">Includes an uppercase letter</li>
+          <li data-criterion="number">Includes a number</li>
+          <li data-criterion="symbol">Includes a symbol (e.g., !@#$)</li>
+          <li data-criterion="spaces">Avoids spaces</li>
+        </ul>
+      </div>
+
+      <div class="tips">
+        <h3>Tips for participants</h3>
+        <ul>
+          <li>Use a memorable phrase and mix in symbols or numbers.</li>
+          <li>Never reuse passwords across accounts.</li>
+          <li>Consider a password manager for secure storage.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="study-title">
+      <h2 id="study-title">Case study notes</h2>
+      <p>
+        This checker runs locally in the browser and does not transmit or store any passwords.
+        You can use it during interviews or survey sessions to give instant feedback without
+        collecting sensitive data.
+      </p>
+      <div class="notes">
+        <label class="field">
+          <span>Optional participant code</span>
+          <input id="participant-code" type="text" placeholder="e.g., STUDY-001" />
+        </label>
+        <label class="field">
+          <span>Observation notes</span>
+          <textarea id="observer-notes" rows="4" placeholder="Record non-sensitive observations."></textarea>
+        </label>
+        <button id="clear-notes" type="button" class="secondary">Clear notes</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built for academic use. Always follow your institution's ethics guidelines.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
