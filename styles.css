@@ -54,6 +54,29 @@ body {
   box-shadow: var(--shadow);
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.card-subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.badge {
+  background: #edf1f9;
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  min-width: 160px;
+  text-align: center;
+}
+
 .card h2 {
   margin-top: 0;
 }
@@ -117,6 +140,52 @@ body {
   font-weight: 600;
 }
 
+.strength-details {
+  display: grid;
+  gap: 4px;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  background: #f3f6fc;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.option input {
+  margin-top: 3px;
+}
+
+.analysis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.status-list {
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
 .criteria ul,
 .tips ul {
   margin: 12px 0 0;
@@ -160,5 +229,9 @@ button.secondary {
   .password-input button {
     width: 100%;
     padding: 12px 0;
+  }
+
+  .badge {
+    width: 100%;
   }
 }
