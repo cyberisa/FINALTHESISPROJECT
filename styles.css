@@ -19,8 +19,20 @@
 body {
   margin: 0;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  background: var(--bg);
+  background: radial-gradient(circle at top, #eef3ff 0%, #f7f7fb 35%, #eef2ff 100%);
   color: var(--text);
+}
+
+.container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(43, 101, 217, 0.12), transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(224, 168, 0, 0.12), transparent 35%),
+    radial-gradient(circle at 60% 90%, rgba(46, 139, 87, 0.12), transparent 45%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .container {
@@ -33,7 +45,11 @@ body {
 }
 
 .header {
-  text-align: center;
+  text-align: left;
+  padding: 24px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(43, 101, 217, 0.12), rgba(46, 139, 87, 0.08));
+  border: 1px solid rgba(43, 101, 217, 0.2);
 }
 
 .title-row {
@@ -47,12 +63,14 @@ body {
 
 .header h1 {
   margin-bottom: 8px;
-  font-size: 2.2rem;
+  font-size: 2.6rem;
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
   margin: 0;
   color: var(--muted);
+  font-size: 1.05rem;
 }
 
 .banner {
@@ -60,8 +78,9 @@ body {
   gap: 12px;
   padding: 16px;
   border-radius: 12px;
-  background: #e8f0ff;
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(43, 101, 217, 0.15), rgba(106, 169, 255, 0.1));
+  border: 1px solid rgba(43, 101, 217, 0.25);
+  box-shadow: 0 12px 20px rgba(43, 101, 217, 0.12);
 }
 
 .banner strong {
@@ -75,8 +94,8 @@ body {
 }
 
 .step {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: linear-gradient(135deg, #ffffff, #f7f9ff);
+  border: 1px solid rgba(43, 101, 217, 0.2);
   border-radius: 12px;
   padding: 12px 16px;
   font-weight: 600;
@@ -88,7 +107,19 @@ body {
   padding: 24px;
   border-radius: 16px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  box-shadow: 0 18px 30px rgba(31, 42, 68, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #2b65d9, #6aa9ff, #2e8b57);
 }
 
 .card-header {
@@ -105,8 +136,8 @@ body {
 }
 
 .badge {
-  background: #edf1f9;
-  color: var(--text);
+  background: linear-gradient(135deg, #2b65d9, #6aa9ff);
+  color: #fff;
   padding: 10px 16px;
   border-radius: 999px;
   font-weight: 600;
@@ -130,14 +161,15 @@ body {
 .field textarea {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(43, 101, 217, 0.2);
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .field select {
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(43, 101, 217, 0.2);
   font-size: 1rem;
   background: #fff;
 }
@@ -153,28 +185,30 @@ body {
 
 .password-input button {
   border: none;
-  background: var(--primary);
+  background: linear-gradient(135deg, #2b65d9, #6aa9ff);
   color: #fff;
   padding: 0 16px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 10px 16px rgba(43, 101, 217, 0.2);
 }
 
 .primary {
   border: none;
-  background: var(--primary);
+  background: linear-gradient(135deg, #2b65d9, #6aa9ff);
   color: #fff;
   padding: 10px 16px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 10px 16px rgba(43, 101, 217, 0.2);
 }
 
 .meter {
   position: relative;
   height: 12px;
-  background: #edf1f9;
+  background: #eef2ff;
   border-radius: 999px;
   margin-top: 8px;
   overflow: hidden;
@@ -226,7 +260,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   margin-top: 20px;
-  background: #f3f6fc;
+  background: linear-gradient(135deg, rgba(43, 101, 217, 0.08), rgba(255, 255, 255, 0.7));
   border-radius: 12px;
   padding: 16px;
 }
@@ -249,6 +283,10 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
   margin-top: 20px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(43, 101, 217, 0.1);
 }
 
 .status-list {
@@ -267,11 +305,11 @@ body {
 .chip {
   border-radius: 999px;
   padding: 6px 12px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(43, 101, 217, 0.2);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text);
-  background: #f6f8fc;
+  background: #f6f8ff;
 }
 
 .chip.met {
@@ -282,9 +320,10 @@ body {
 
 .chart {
   margin-top: 12px;
-  background: #f1f4fb;
+  background: #f1f4ff;
   border-radius: 12px;
   padding: 12px;
+  border: 1px solid rgba(43, 101, 217, 0.15);
 }
 
 .chart-bar {
@@ -307,7 +346,7 @@ body {
   margin-top: 12px;
   height: 160px;
   border-radius: 50%;
-  border: 2px dashed var(--border);
+  border: 2px dashed rgba(43, 101, 217, 0.3);
   display: grid;
   place-items: center;
   position: relative;
@@ -339,8 +378,8 @@ body {
   margin-top: 24px;
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid var(--border);
-  background: #f9fafc;
+  border: 1px solid rgba(43, 101, 217, 0.2);
+  background: linear-gradient(135deg, #ffffff, #f4f7ff);
 }
 
 .generator-grid {
@@ -415,8 +454,8 @@ body {
 }
 
 button.secondary {
-  background: transparent;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(43, 101, 217, 0.2);
   padding: 10px 16px;
   border-radius: 10px;
   cursor: pointer;
@@ -436,12 +475,12 @@ button.secondary {
 }
 
 .dark .banner {
-  background: rgba(106, 169, 255, 0.1);
+  background: rgba(106, 169, 255, 0.15);
 }
 
 .dark .generator,
 .dark .options {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .dark .chip {
@@ -456,8 +495,12 @@ button.secondary {
 .dark .field input,
 .dark .field textarea,
 .dark .generator-output input {
-  background: #0f1424;
+  background: rgba(15, 20, 36, 0.9);
   color: var(--text);
+}
+
+body.dark {
+  background: radial-gradient(circle at top, #0f1424 0%, #0b1020 60%, #0f1424 100%);
 }
 
 .survey .analysis,
