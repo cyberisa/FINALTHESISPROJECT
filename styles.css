@@ -36,12 +36,12 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 24px 48px;
+  padding: 56px 24px 64px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .header {
@@ -50,6 +50,7 @@ body {
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(43, 101, 217, 0.12), rgba(46, 139, 87, 0.08));
   border: 1px solid rgba(43, 101, 217, 0.2);
+  box-shadow: 0 20px 40px rgba(31, 42, 68, 0.12);
 }
 
 .title-row {
@@ -71,6 +72,7 @@ body {
   margin: 0;
   color: var(--muted);
   font-size: 1.05rem;
+  max-width: 720px;
 }
 
 .banner {
@@ -97,15 +99,18 @@ body {
   background: linear-gradient(135deg, #ffffff, #f7f9ff);
   border: 1px solid rgba(43, 101, 217, 0.2);
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 14px 18px;
   font-weight: 600;
   color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
 }
 
 .card {
   background: var(--card);
-  padding: 24px;
-  border-radius: 16px;
+  padding: 28px;
+  border-radius: 20px;
   border: 1px solid var(--border);
   box-shadow: 0 18px 30px rgba(31, 42, 68, 0.12);
   position: relative;
@@ -117,7 +122,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 6px;
+  height: 7px;
   width: 100%;
   background: linear-gradient(90deg, #2b65d9, #6aa9ff, #2e8b57);
 }
@@ -133,6 +138,7 @@ body {
 .card-subtitle {
   margin: 4px 0 0;
   color: var(--muted);
+  font-size: 0.98rem;
 }
 
 .badge {
@@ -143,17 +149,20 @@ body {
   font-weight: 600;
   min-width: 160px;
   text-align: center;
+  box-shadow: 0 12px 20px rgba(43, 101, 217, 0.25);
 }
 
 .card h2 {
   margin-top: 0;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   font-weight: 600;
 }
 
@@ -207,7 +216,7 @@ body {
 
 .meter {
   position: relative;
-  height: 12px;
+  height: 14px;
   background: #eef2ff;
   border-radius: 999px;
   margin-top: 8px;
@@ -248,6 +257,7 @@ body {
 .strength-details {
   display: grid;
   gap: 4px;
+  margin-top: 6px;
 }
 
 .muted {
@@ -263,6 +273,7 @@ body {
   background: linear-gradient(135deg, rgba(43, 101, 217, 0.08), rgba(255, 255, 255, 0.7));
   border-radius: 12px;
   padding: 16px;
+  border: 1px solid rgba(43, 101, 217, 0.12);
 }
 
 .option {
@@ -281,7 +292,7 @@ body {
 .analysis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  gap: 20px;
   margin-top: 20px;
   padding: 12px;
   border-radius: 16px;
@@ -293,6 +304,7 @@ body {
   margin: 12px 0 0;
   padding-left: 20px;
   color: var(--muted);
+  line-height: 1.6;
 }
 
 .chip-grid {
@@ -380,6 +392,7 @@ body {
   border-radius: 12px;
   border: 1px solid rgba(43, 101, 217, 0.2);
   background: linear-gradient(135deg, #ffffff, #f4f7ff);
+  box-shadow: 0 12px 20px rgba(43, 101, 217, 0.12);
 }
 
 .generator-grid {
@@ -408,6 +421,7 @@ body {
   margin: 12px 0 0;
   padding-left: 20px;
   color: var(--muted);
+  line-height: 1.6;
 }
 
 .criteria li {
@@ -451,6 +465,7 @@ body {
 .notes {
   display: grid;
   gap: 12px;
+  padding-top: 8px;
 }
 
 button.secondary {
@@ -503,6 +518,15 @@ body.dark {
   background: radial-gradient(circle at top, #0f1424 0%, #0b1020 60%, #0f1424 100%);
 }
 
+body.dark .header {
+  background: linear-gradient(135deg, rgba(106, 169, 255, 0.15), rgba(46, 139, 87, 0.08));
+  border-color: rgba(106, 169, 255, 0.2);
+}
+
+body.dark .card {
+  box-shadow: 0 18px 30px rgba(3, 6, 15, 0.5);
+}
+
 .survey .analysis,
 .survey .generator,
 .survey .tips,
@@ -513,7 +537,8 @@ body.dark {
 .footer {
   text-align: center;
   color: var(--muted);
-  padding: 0 24px 32px;
+  padding: 0 24px 40px;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 720px) {
