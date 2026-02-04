@@ -9,11 +9,34 @@
 <body>
   <main class="container">
     <header class="header">
-      <h1>Password Strength Checker</h1>
-      <p class="subtitle">
-        Case study tool for understanding password creation habits among university students.
-      </p>
+      <div class="title-row">
+        <div>
+          <h1>Password Strength Checker</h1>
+          <p class="subtitle">
+            Case study tool for understanding password creation habits among university students.
+          </p>
+        </div>
+        <button id="theme-toggle" class="secondary" type="button" aria-pressed="false">
+          Dark mode
+        </button>
+      </div>
     </header>
+
+    <section class="banner" aria-live="polite">
+      <div>
+        <strong>Privacy-first:</strong> This checker runs locally in your browser. No passwords are stored or transmitted.
+      </div>
+      <label class="option">
+        <input id="consent-checkbox" type="checkbox" />
+        I understand this is a study tool and will not enter real account passwords.
+      </label>
+    </section>
+
+    <section class="steps" aria-label="How to use">
+      <div class="step">1. Type a password</div>
+      <div class="step">2. Review warnings</div>
+      <div class="step">3. Improve with tips</div>
+    </section>
 
     <section class="card" aria-labelledby="checker-title">
       <div class="card-header">
@@ -51,6 +74,18 @@
       <div class="options">
         <div>
           <h3>Study options</h3>
+          <label class="field">
+            <span>Participant name (optional)</span>
+            <input id="participant-name" type="text" placeholder="e.g., Maria Santos" />
+          </label>
+          <label class="field">
+            <span>Participant email (optional)</span>
+            <input id="participant-email" type="email" placeholder="name@university.edu" />
+          </label>
+          <label class="field">
+            <span>Student ID (optional)</span>
+            <input id="student-id" type="text" placeholder="e.g., 20231234" />
+          </label>
           <label class="option">
             <input id="toggle-pii" type="checkbox" checked />
             Warn if password contains likely personal info (name, email, or student ID pattern)
@@ -63,6 +98,10 @@
             <input id="toggle-common" type="checkbox" checked />
             Flag common or leaked password phrases (offline list)
           </label>
+          <label class="option">
+            <input id="toggle-survey" type="checkbox" />
+            Survey mode (compact view)
+          </label>
         </div>
         <div>
           <h3>Policy preset</h3>
@@ -74,20 +113,45 @@
               <option value="survey">Survey (10+ chars)</option>
             </select>
           </label>
+          <label class="option">
+            <input id="toggle-tooltips" type="checkbox" checked />
+            Show explainer tooltips
+          </label>
         </div>
       </div>
 
       <div class="criteria" aria-live="polite">
         <h3>Suggested criteria</h3>
         <ul id="criteria-list">
-          <li data-criterion="length">At least 12 characters</li>
-          <li data-criterion="lowercase">Includes a lowercase letter</li>
-          <li data-criterion="uppercase">Includes an uppercase letter</li>
-          <li data-criterion="number">Includes a number</li>
-          <li data-criterion="symbol">Includes a symbol (e.g., !@#$)</li>
-          <li data-criterion="spaces">Avoids spaces</li>
-          <li data-criterion="unique">Avoids repeated characters (e.g., aaaa)</li>
-          <li data-criterion="sequence">Avoids sequences (e.g., 1234, abcd)</li>
+          <li data-criterion="length" data-tip="Longer passwords are harder to guess.">At least 12 characters</li>
+          <li data-criterion="lowercase" data-tip="Lowercase letters expand the character set.">
+            Includes a lowercase letter
+          </li>
+          <li data-criterion="uppercase" data-tip="Uppercase letters add complexity.">
+            Includes an uppercase letter
+          </li>
+          <li data-criterion="number" data-tip="Numbers reduce predictability.">Includes a number</li>
+          <li data-criterion="symbol" data-tip="Symbols make brute-force attacks harder.">
+            Includes a symbol (e.g., !@#$)
+          </li>
+          <li data-criterion="spaces" data-tip="Spaces can be blocked by some systems.">
+            Avoids spaces
+          </li>
+          <li data-criterion="unique" data-tip="Repeated characters are easier to guess.">
+            Avoids repeated characters (e.g., aaaa)
+          </li>
+          <li data-criterion="sequence" data-tip="Sequences like 1234 or abcd are predictable.">
+            Avoids sequences (e.g., 1234, abcd)
+          </li>
+          <li data-criterion="dictionary" data-tip="Dictionary words are easily guessed.">
+            Avoids common dictionary words
+          </li>
+          <li data-criterion="leet" data-tip="Common substitutions are still guessable.">
+            Avoids obvious leetspeak substitutions
+          </li>
+          <li data-criterion="date" data-tip="Years and dates are easy to guess.">
+            Avoids common dates (e.g., 1999)
+          </li>
         </ul>
       </div>
 
@@ -103,6 +167,73 @@
           <ul id="recommendation-list" class="status-list">
             <li class="muted">Start typing to see recommendations.</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="analysis">
+        <div>
+          <h3>Why this is weak</h3>
+          <ul id="explain-list" class="status-list">
+            <li class="muted">We will explain once you start typing.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Strength snapshot</h3>
+          <div class="chip-grid" id="chip-grid">
+            <span class="chip muted">Length</span>
+            <span class="chip muted">Uppercase</span>
+            <span class="chip muted">Lowercase</span>
+            <span class="chip muted">Number</span>
+            <span class="chip muted">Symbol</span>
+            <span class="chip muted">No repeats</span>
+            <span class="chip muted">No sequences</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="analysis">
+        <div>
+          <h3>Strength chart</h3>
+          <div class="chart">
+            <div class="chart-bar" id="chart-bar"></div>
+            <div class="chart-labels">
+              <span>0</span>
+              <span>50</span>
+              <span>100</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>Radial criteria view</h3>
+          <div class="radar" aria-hidden="true">
+            <span>Length</span>
+            <span>Mix</span>
+            <span>Patterns</span>
+            <span>Words</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="generator">
+        <h3>Password generator</h3>
+        <div class="generator-grid">
+          <label class="field">
+            <span>Length</span>
+            <input id="gen-length" type="number" min="10" max="32" value="16" />
+          </label>
+          <label class="option">
+            <input id="gen-symbols" type="checkbox" checked />
+            Include symbols
+          </label>
+          <label class="option">
+            <input id="gen-passphrase" type="checkbox" />
+            Use passphrase mode
+          </label>
+          <button id="generate-btn" type="button" class="primary">Generate</button>
+        </div>
+        <div class="generator-output">
+          <input id="generated-password" type="text" readonly placeholder="Generated password" />
+          <button id="copy-btn" type="button" class="secondary">Copy</button>
         </div>
       </div>
 
@@ -125,6 +256,29 @@
       </p>
       <div class="notes">
         <label class="field">
+          <span>Age group</span>
+          <select id="age-group">
+            <option value="">Select</option>
+            <option value="18-20">18-20</option>
+            <option value="21-24">21-24</option>
+            <option value="25-29">25-29</option>
+            <option value="30+">30+</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Department</span>
+          <input id="department" type="text" placeholder="e.g., Computer Science" />
+        </label>
+        <label class="field">
+          <span>Device used</span>
+          <select id="device">
+            <option value="">Select</option>
+            <option value="laptop">Laptop</option>
+            <option value="mobile">Mobile</option>
+            <option value="tablet">Tablet</option>
+          </select>
+        </label>
+        <label class="field">
           <span>Optional participant code</span>
           <input id="participant-code" type="text" placeholder="e.g., STUDY-001" />
         </label>
@@ -133,6 +287,8 @@
           <textarea id="observer-notes" rows="4" placeholder="Record non-sensitive observations."></textarea>
         </label>
         <button id="clear-notes" type="button" class="secondary">Clear notes</button>
+        <button id="clear-all" type="button" class="secondary">Clear all data</button>
+        <button id="export-btn" type="button" class="primary">Export summary (CSV)</button>
       </div>
     </section>
   </main>
